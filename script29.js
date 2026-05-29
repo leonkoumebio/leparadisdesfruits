@@ -22,14 +22,13 @@ function selectionProduit(select) {
     let produit = select.parentElement.querySelector(".nom-produit").innerText;
     let quantite = select.value;
 
-    if (!quantite) {panier = panier.filter(p=> p.produit !== produit);
-        return;
-    }
-
+    if (quantite === "" || quantite === "quantite"){
+        panier = panier.filter(p => p.produit !== produit); } else
+    {
     let existant = panier.find(p => p.produit === produit);
     if (existant) { existant.quantite = quantite;
-    } else {panier.push({produit, quantite});}
-
+    } else {panier.push({produit, quantite});}}
+     if (panier.length === 0) return;
     let lignes = panier.map(p => p.quantite + " de " + p.produit);
     let message =
         "Bonjour je voudrais commander : " + lignes.join(" et ");
